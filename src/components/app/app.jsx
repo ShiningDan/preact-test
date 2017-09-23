@@ -15,7 +15,7 @@ export default class App extends Component {
 
   componentDidMount() {
     console.log('get into componentDidMount')
-    this.refreshSubApp();
+    console.log(this.refs)
   }
 
   refreshSubApp = () => {
@@ -34,7 +34,17 @@ export default class App extends Component {
       <br />
       <span id='helloWorld'>'hello world'</span>
       <br />
-      <SubApp val={this.state.val}><div>I'm children</div></SubApp>
+      <StatelessFunc name="hello" value="world" value1="world1" />
+      <SubApp val={this.state.val} ref={this.refreshSubApp}><div>I'm children</div></SubApp>
     </div>;
   }
+}
+
+let StatelessFunc = ({name, ...value}) => {
+  console.log(value)
+  return (
+    <div>
+      <div>name : {name}</div>
+    </div>
+  );
 }
